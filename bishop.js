@@ -16,7 +16,6 @@ class Bishop {
     }
     
     possibleNextPosition ()
-    
-    
+        
     
     }
