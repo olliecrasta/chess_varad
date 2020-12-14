@@ -1,6 +1,6 @@
 class Pawn {
 
-    constructor (pos,colour)  {
+    constructor (colour,pos)  {
     
     this.pos=pos 
     this.colour=colour 
@@ -11,11 +11,11 @@ class Pawn {
     }
     
     this.alive=true 
-    this.posiblenNext 
+    this.posiblenNext =[]
     
     }
     
-    possibleNextPosition ()
+    possibleNextPosition (){}
     
     
     

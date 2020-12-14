@@ -1,6 +1,6 @@
 class Rook {
 
-constructor (pos,colour)  {
+constructor (colour,pos)  {
 
 this.pos=pos 
 this.colour=colour 
@@ -11,11 +11,11 @@ if(colour===WHITE){
 }
 
 this.alive=true 
-this.posiblenNext 
+this.posiblenNext =null;
 
 }
 
-possibleNextPosition ()
+possibleNextPosition (){}
 
 
 

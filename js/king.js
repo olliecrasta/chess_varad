@@ -1,21 +1,22 @@
 class King {
 
-    constructor (pos,colour)  {
+    constructor (colour,pos)  {
     
     this.pos=pos 
     this.colour=colour 
+    if(colour===BLACK){
     this.image=loadImage ("images/blackKing.png")
-    
+    }
     if(colour===WHITE){
         this.image=loadImage ("images/whiteKing.png")
     }
     
     this.alive=true 
-    this.posiblenNext 
+    this.posiblenNext =[]
     
     }
     
-    possibleNextPosition ()
+    possibleNextPosition (){}
     
     
     

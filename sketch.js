@@ -1,7 +1,7 @@
-var board=[];
+var board;
 var WHITE = 1;
 var BLACK =0;
-
+var chessBoard;
 
 function preload(){
 
@@ -9,11 +9,17 @@ function preload(){
 
 function setup(){
 createCanvas(windowWidth-40,windowHeight-40)
+
+
+
+chessBoard = new Board();
+chessBoard.resetBoard();
 }
 
 function draw(){
 
-    board = new Board();
-    board.displayBackground();
+    
+    chessBoard.displayBackground();
+    
 
 }

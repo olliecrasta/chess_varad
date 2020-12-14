@@ -1,6 +1,6 @@
 class Queen {
 
-    constructor (pos,colour)  {
+    constructor (colour,pos)  {
     
     this.pos=pos 
     this.colour=colour 
@@ -11,11 +11,11 @@ class Queen {
     }
     
     this.alive=true 
-    this.posiblenNext 
+    this.posiblenNext =[]
     
     }
     
-    possibleNextPosition ()
+    possibleNextPosition (){}
     
     
     

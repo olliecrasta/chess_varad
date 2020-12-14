@@ -29,6 +29,7 @@ display () {
       player.index = playerCount-1;
       this.title.hide;
 
-}
+})
 
+}
 }
