@@ -16,7 +16,17 @@ class King {
     
     }
     
-    possibleNextPosition (){}
+    recalculatePossibleNext() {
+        console.log('recalculating pos for king');
+        
+    }
+    possibleNextPositions() {
+        return this.possiblenNext;
+    }
+
+    moveTo(pos) {
+          //return true if successful ,else return false
+    }
     
     
     

@@ -14,8 +14,31 @@ class Pawn {
     this.posiblenNext =[]
     
     }
+    recalculatePossibleNext() {
+        console.log('recalculating pos for pawn');
+        this.possiblenNext = [];
+        if (this.colour===WHITE){
+            if(this.pos.x===6) {
+                this.possiblenNext.push({ x: this.pos.x-2, y: this.pos.y });
+            }
+            this.possiblenNext.push({ x: this.pos.x-1, y: this.pos.y });
+        }
+        else {
+            if(this.pos.x===1) {
+                this.possiblenNext.push({ x: this.pos.x+2, y: this.pos.y });
+            }
+            this.possiblenNext.push({ x: this.pos.x+1, y: this.pos.y });
+        }
+        this.possiblenNext = this.possiblenNext.filter(p => p.x >= 0 && p.x < 8 &&  p.y >= 0 && p.y < 8)
+    }
     
-    possibleNextPosition (){}
+    possibleNextPositions() {
+        return this.possiblenNext;
+    }
+
+    moveTo(pos) {
+        //return true if successful ,else return false
+    }
     
     
     

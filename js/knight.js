@@ -12,11 +12,19 @@ class Knight {
     
     this.alive=true 
     this.posiblenNext =[]
-    
     }
     
-    possibleNextPosition (){}
-    
+    recalculatePossibleNext() {
+        console.log('recalculating pos for knight');
+   
+    }
+    possibleNextPositions() {
+        return this.possiblenNext;
+    }
+
+    moveTo(pos) {
+          //return true if successful ,else return false
+    }
     
     
     }

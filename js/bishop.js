@@ -15,9 +15,17 @@ class Bishop {
     
     }
     
-    possibleNextPosition (){
-
-    }
+    recalculatePossibleNext() {
+        console.log('recalculating pos for bishop');
         
+        this.possiblenNext = this.possiblenNext.filter(p => p.x >= 0 && p.x < 8 &&  p.y >= 0 && p.y < 8)
+    }
+    possibleNextPositions() {
+        return this.possiblenNext;
+    }
+
+    moveTo(pos) {
+         //return true if successful ,else return false
+    }
     
     }
