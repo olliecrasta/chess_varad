@@ -3,47 +3,77 @@ class Rook {
     constructor(colour, pos) {
 
         this.pos = pos
+        this.type="rook"
         this.colour = colour
+        this.opponentColor = (this.colour == WHITE) ? BLACK : WHITE
         this.image = loadImage("images/blackRook.png")
-        // this.sprite = createSprite(pos.x * chessBoard.size + chessBoard.size / 2, pos.y * chessBoard.size + chessBoard.size / 2, 10, 10)
-        // this.sprite.addImage(this.image);
         this.scale = 0.6;
         if (colour === WHITE) {
             this.image = loadImage("images/whiteRook.png")
         }
-
-        this.alive = true
-        this.possiblenNext = null;
+        this.possibleNext = [];
         console.log(chessBoard.size)
 
     }
 
-    recalculatePossibleNext() {
+    recalculatePossibleNext(pieces) {
         console.log('recalculating pos');
-        this.possiblenNext = [];
-        for (var i = 0; i < 8; i++) {
-           
-                this.possiblenNext.push({ x: i, y: this.pos.y });
+        this.possibleNext = [];
+
+        // look for possible moves towards down
+        var i = this.pos.x+1;
+        while (i < 8) {
+            if (this.cannotMoveBeyond(pieces[i][this.pos.y])) break;
+            this.possibleNext.push({ x: i, y: this.pos.y, attack: false });
+            i++;
         }
-        for (var i = 0; i < 8; i++) {
-            
-                this.possiblenNext.push({ x: this.pos.x, y: i })
+
+        // look for possible moves towards up
+        i = this.pos.x-1;
+        while (i >= 0) {
+            if (this.cannotMoveBeyond(pieces[i][this.pos.y])) break;
+            this.possibleNext.push({ x: i, y: this.pos.y, attack: false });
+            i--;
         }
-        console.log(this.possibleNext)
-       
 
-      //  this.possiblenNext = this.possiblenNext.filter(p => p.x >= 0 && p.x < 8 &&  p.y >= 0 && p.y < 8)
+        // look for possible moves towards right
+        var j = this.pos.y+1;
+        while (j < 8) {
+            if (this.cannotMoveBeyond(pieces[this.pos.x][j])) break;
+            this.possibleNext.push({ x: this.pos.x, y: j, attack: false });
+            j++;
+        }
 
-        this.possiblenNext = this.possiblenNext.filter((p)=>{return p.x>=0&&p.x<8&&p.y>=0&&p.y<8 && !(this.pos.x===p.x && this.pos.y ===p.y)})
+        // look for possible moves towards left
+        j = this.pos.y-1;
+        while (j >= 0) {
+            if (this.cannotMoveBeyond(pieces[this.pos.x][j])) break;
+            this.possibleNext.push({ x: this.pos.x, y: j, attack: false });
+            j--;
+        }
+
+        // remove all moves that are outside the chessboard matrix of 8x8
+        this.possibleNext = this.possibleNext.filter(p => p.x >= 0 && p.x < 8 && p.y >= 0 && p.y < 8);
+        return this.possibleNext
     }
-  
-
-    possibleNextPositions() {
-        return this.possiblenNext;
+    cannotMoveBeyond(piece) {
+        if (piece && piece.colour === this.colour)
+            return true;
+        if (piece && piece.colour === this.opponentColor) {
+            this.possibleNext.push({ x: piece.pos.x, y: piece.pos.y, attack: true });
+            return true;
+        }
+        return false;
     }
-
     moveTo(pos) {
-          //return true if successful ,else return false
+        if (this.possibleNext.find(canGoTo => canGoTo.x === pos.x && canGoTo.y === pos.y)) {
+            this.pos = pos;
+            console.log("Moved to position ", pos);
+            return true;
+        } else {
+            console.error("Cannot go to position ", pos);
+            return false;
+        }
     }
 
 }
